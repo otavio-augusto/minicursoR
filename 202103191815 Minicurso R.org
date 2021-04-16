@@ -1,0 +1,204 @@
+* Metadados :noexport:
+#+options: ':t *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t
+#+options: broken-links:nil c:nil creator:nil d:(not "LOGBOOK") date:nil e:t
+#+options: email:nil f:t inline:t num:nil p:nil pri:nil prop:nil stat:t tags:t
+#+options: tasks:t tex:t timestamp:nil title:t toc:nil todo:t |:t
+#+title: Minicurso R
+#+date: \today
+#+author: Otávio Augusto Alves de Souza
+#+email: otavioaas@outlook.com
+#+language: pt-BR
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 27.1 (Org mode 9.5)
+#+STARTUP: latexpreview
+#+STARTUP: inlineimages
+* Data Frames
+São estruturas de dados bidimensionais, comumente representados como tabelas.
+- Nomes das colunas são não-nulos.
+- Nomes de linhas devem ser unicos.
+- Dados podem ser =numeric=, =factor= ou =character=.
+** Exemplos em R
+R fornece varios conjuntos de dados por padrão, sem que precise criar ou importar algo para testes rapidos.
+
+Um desses exemplos é o Data Frame /"ToothGrowth"/
+#+begin_src R :exports both :results output
+ToothGrowth[1:4,]
+#+end_src
+#+RESULTS:
+:    len supp dose
+: 1  4.2   VC  0.5
+: 2 11.5   VC  0.5
+: 3  7.3   VC  0.5
+: 4  5.8   VC  0.5
+Usaremos esse conjunto de dados para demonstrar o R.
+** Função =head()=
+Para entender a estrutura de um conjunto de dados existem duas funções, a mais simples delas é =head()=, que mostra o nome das colunas e as seis primeiras linhas.
+#+begin_src R :exports both :results output
+head(ToothGrowth)
+#+end_src
+
+#+RESULTS:
+:    len supp dose
+: 1  4.2   VC  0.5
+: 2 11.5   VC  0.5
+: 3  7.3   VC  0.5
+: 4  5.8   VC  0.5
+: 5  6.4   VC  0.5
+: 6 10.0   VC  0.5
+
+** Função =str()=
+A função str() mostra algumas observações sobre o Data Frame: o numero de observações, no caso do exemplo 60, a quantidade de colunas, no caso 3, e o tipo dado armazenado em cada.
+#+begin_src R :exports both :results output wrap org
+str(ToothGrowth)
+#+end_src
+
+#+RESULTS:
+#+begin_src org
+'data.frame':	60 obs. of  3 variables:
+ $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+ $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
+ $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+#+end_src
+
+* Histograma
+Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte pela função =hist()= ou por bibliotecas como =ggplot2=, estudaremos a função padrão em R.
+** Estrutura Basica
+#+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
+#+begin_src R :results graphics file :exports both :file .imagens/histograma1.png
+hist(ToothGrowth$len)
+#+end_src
+#+RESULTS:
+[[file:.imagens/histograma1.png]]
+
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="column" style="float:right; width: 50%">
+- A função =hist()= recebe um vetor de dados ~x~.
+#+REVEAL_HTML: </div>
+** Alterando os /Breaks/
+#+begin_src R :results graphics file :exports both :file .imagens/histograma2.png
+hist(ToothGrowth$len,
+     breaks=c(0,10,20,30,40))
+#+end_src
+#+RESULTS:
+[[file:.imagens/histograma2.png]]
+
+** Alterando /Labels/
+#+begin_src R :results graphics file :exports both :file .imagens/histograma3.png
+hist(ToothGrowth$len,
+     main="Titulo do Grafico",
+     xlab="Titulo X",
+     ylab="Titulo Y")
+#+end_src
+#+ATTR_HTML: :width 425px
+#+RESULTS:
+[[file:.imagens/histograma3.png]]
+
+* Medidas Estatisticas
+** Minimo, Maximo, Média
+
+#+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
+- Mínimo
+#+begin_src R :results output :exports both
+min(ToothGrowth$len)
+#+end_src
+#+RESULTS:
+: [1] 4.2
+#+REVEAL_HTML: </div>
+
+#+REVEAL_HTML: <div class="column" style="float:right; width: 50%">
+- Máximo
+#+begin_src R :results output :exports both
+max(ToothGrowth$len)
+#+end_src
+#+RESULTS:
+: [1] 33.9
+#+REVEAL_HTML: </div>
+
+- Média
+#+begin_src R :results output :exports both
+mean(ToothGrowth$len)
+#+end_src
+#+RESULTS:
+: [1] 18.81333
+
+** Quartis
+#+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
+\begin{equation}
+(N+1) * 1/4
+\end{equation}
+#+begin_src R :exports code :eval no
+quartile(dados, prob=.25)
+#+end_src
+\begin{equation}
+(N+1) * 2/4
+\end{equation}
+#+begin_src R :exports code :eval no
+quartile(dados, prob=.5)
+#+end_src
+\begin{equation}
+(N+1)*3/4
+\end{equation}
+#+begin_src R :exports code :eval no
+quartile(dados, prob=.75)
+#+end_src
+#+REVEAL_HTML: </div>
+
+#+REVEAL_HTML: <div class="column" style="float:right; width: 50%">
+#+begin_src R :results graphics file :exports results :file .imagens/boxplot-explicado.png
+boxplot(ToothGrowth$len, main = "Tamanho dos Dentes", ylab="Tamanho", horizontal = FALSE)
+text(x= 0.65, y= 33.9,  labels= "Máximo")
+text(x= 0.65, y= 25.27, labels= "Terceiro Quartil")
+text(x= 0.65, y= 19.25, labels= "Mediana")
+text(x= 0.65, y= 13.07, labels= "Primeiro Quartil")
+text(x= 0.65, y= 4.2,   labels= "Mínimo")
+#+end_src
+#+RESULTS:
+[[file:.imagens/boxplot-explicado.png]]
+#+REVEAL_HTML: </div>
+
+** Função =summary()=
+Todos os dados apresentados antes podem ser calculados com uma unica função.
+#+begin_src R :exports both :results output
+summary(ToothGrowth$len)
+#+end_src
+#+RESULTS:
+:    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+:    4.20   13.07   19.25   18.81   25.27   33.90
+
+Essa função também funciona em Data Frames inteiros.
+#+begin_src R :exports both :results output
+summary(ToothGrowth)
+#+end_src
+#+RESULTS:
+:       len        supp         dose
+:  Min.   : 4.20   OJ:30   Min.   :0.500
+:  1st Qu.:13.07   VC:30   1st Qu.:0.500
+:  Median :19.25           Median :1.000
+:  Mean   :18.81           Mean   :1.167
+:  3rd Qu.:25.27           3rd Qu.:2.000
+:  Max.   :33.90           Max.   :2.000
+
+** Boxplot
+#+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
+Uma das formas para visualizar os quartis é o grafico boxplot, como mostrado anteriormente ele exibe a divisão dos quartis sobre os dados.
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="column" style="float:right; width: 50%">
+#+begin_src R :exports both :results graphics file :file .imagens/boxplot1.png
+boxplot(ToothGrowth$len,
+        main = "Tamanho")
+#+end_src
+#+RESULTS:
+[[file:.imagens/boxplot1.png]]
+#+REVEAL_HTML: </div>
+
+*** Boxplots Lado a Lado
+#+NAME:func1
+#+begin_src R :exports both :results graphics file :file .imagens/boxplot2.png
+boxplot(ToothGrowth$len[ToothGrowth$supp=="OJ"],
+        ToothGrowth$len[ToothGrowth$supp=="VC"],
+        main = "Tamanho", names = c("OJ","VC"),
+        xlab="Tipo de Suplemento", ylab="Tamanho dos Dentes")
+#+end_src
+#+RESULTS: func1
+[[file:.imagens/boxplot2.png]]
