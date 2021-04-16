@@ -1,7 +1,11 @@
 #+TITLE: Minicurso de R
 
 Esse repositorio contém os dados utilizados para o minicurso de R.
+
 Para ver as anotações em /plain text/ utilize o arquivo [[./202103191815 Minicurso R.org][.org]].
+
 Para ver as anotações em /html/ utilize o arquivo [[./202103191815 Minicurso R.html][.html]].
+
 Para ver as anotações em /pdf/ utilize o arquivo [[./202103191815 Minicurso R.pdf][.pdf]].
+
 Para ver a versão online, utilizando RStudio Cloud, visite o [[https://rstudio.cloud/project/2440617][link]].
