@@ -61,6 +61,20 @@ str(ToothGrowth)
  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
 #+end_src
 
+* Grafico de Barras
+#+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
+#+NAME: barras1
+#+begin_src R :results graphics file :exports both :file .imagens/barras1.png
+barplot(ToothGrowth$len,
+        main="Tamanho dos Dentes",
+        xlab="Indice",
+        ylab="Tamanho")
+#+end_src
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="column" style="float:right; width: 50%">
+#+RESULTS: barras1
+[[file:.imagens/barras1.png]]
+#+REVEAL_HTML: </div>
 * Histograma
 Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte pela função =hist()= ou por bibliotecas como =ggplot2=, estudaremos a função padrão em R.
 ** Estrutura Basica
@@ -121,6 +135,14 @@ mean(ToothGrowth$len)
 #+end_src
 #+RESULTS:
 : [1] 18.81333
+
+** Desvio Padrão
+#+begin_src R :results output :exports both
+sd(ToothGrowth$len)
+#+end_src
+
+#+RESULTS:
+: [1] 7.649315
 
 ** Quartis
 #+REVEAL_HTML: <div class="column" style="float:left; width: 50%">
@@ -202,3 +224,19 @@ boxplot(ToothGrowth$len[ToothGrowth$supp=="OJ"],
 #+end_src
 #+RESULTS: func1
 [[file:.imagens/boxplot2.png]]
+
+* Leitura de Arquivos
+- Arquivos JSON:
+  #+begin_src R :exports code :eval no
+library(jsonlite)
+setwd("/seu/diretorio/atual")
+dados <- as.data.frame(fromJSON(txt='arquivo.json'))
+  #+end_src
+
+- Arquivos Tipo CSV:
+  #+begin_src R :exports code :eval no
+setwd("/seu/diretorio/atual")
+dados <- read.table("activity.data",
+                    header = TRUE,
+                    sep=",")
+  #+end_src

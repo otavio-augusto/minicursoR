@@ -30,8 +30,8 @@
 <section id="sec-title-slide"><h1 class="title">Minicurso R</h1><h2 class="author">Otávio Augusto Alves de Souza</h2>
 </section>
 <section>
-<section id="slide-org47728ee">
-<h2 id="org47728ee">Data Frames</h2>
+<section id="slide-org2222bed">
+<h2 id="org2222bed">Data Frames</h2>
 <p>
 São estruturas de dados bidimensionais, comumente representados como tabelas.
 </p>
@@ -42,8 +42,8 @@ São estruturas de dados bidimensionais, comumente representados como tabelas.
 
 </ul>
 </section>
-<section id="slide-org5fad16d">
-<h3 id="org5fad16d">Exemplos em R</h3>
+<section id="slide-orgdfa1ad9">
+<h3 id="orgdfa1ad9">Exemplos em R</h3>
 <p>
 R fornece varios conjuntos de dados por padrão, sem que precise criar ou importar algo para testes rapidos.
 </p>
@@ -68,8 +68,8 @@ Um desses exemplos é o Data Frame <i>"ToothGrowth"</i>
 Usaremos esse conjunto de dados para demonstrar o R.
 </p>
 </section>
-<section id="slide-orga238c35">
-<h3 id="orga238c35">Função <code>head()</code></h3>
+<section id="slide-orgd000451">
+<h3 id="orgd000451">Função <code>head()</code></h3>
 <p>
 Para entender a estrutura de um conjunto de dados existem duas funções, a mais simples delas é <code>head()</code>, que mostra o nome das colunas e as seis primeiras linhas.
 </p>
@@ -90,8 +90,8 @@ Para entender a estrutura de um conjunto de dados existem duas funções, a mais
 </pre>
 
 </section>
-<section id="slide-org623f125">
-<h3 id="org623f125">Função <code>str()</code></h3>
+<section id="slide-org0d44000">
+<h3 id="org0d44000">Função <code>str()</code></h3>
 <p>
 A função str() mostra algumas observações sobre o Data Frame: o numero de observações, no caso do exemplo 60, a quantidade de colunas, no caso 3, e o tipo dado armazenado em cada.
 </p>
@@ -113,14 +113,36 @@ A função str() mostra algumas observações sobre o Data Frame: o numero de ob
 </section>
 </section>
 <section>
-<section id="slide-org4e416b2">
-<h2 id="org4e416b2">Histograma</h2>
+<section id="slide-org529d43a">
+<h2 id="org529d43a">Grafico de Barras</h2>
+<div class="column" style="float:left; width: 50%">
+<div class="org-src-container">
+
+<pre  class="src src-R" id="barras1"><code trim>barplot(ToothGrowth$len,
+        main=<span style="color: #A3BE8C;">"Tamanho dos Dentes"</span>,
+        xlab=<span style="color: #A3BE8C;">"Indice"</span>,
+        ylab=<span style="color: #A3BE8C;">"Tamanho"</span>)
+</code></pre>
+</div>
+</div>
+<div class="column" style="float:right; width: 50%">
+
+<div id="org538be6d" class="figure">
+<p><img src=".imagens/barras1.png" alt="barras1.png" />
+</p>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgd8e26cc">
+<h2 id="orgd8e26cc">Histograma</h2>
 <p>
 Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte pela função <code>hist()</code> ou por bibliotecas como <code>ggplot2</code>, estudaremos a função padrão em R.
 </p>
 </section>
-<section id="slide-orga33f487">
-<h3 id="orga33f487">Estrutura Basica</h3>
+<section id="slide-orgdb051c1">
+<h3 id="orgdb051c1">Estrutura Basica</h3>
 <div class="column" style="float:left; width: 50%">
 <div class="org-src-container">
 
@@ -128,7 +150,7 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </code></pre>
 </div>
 
-<div id="org6fe9ccf" class="figure">
+<div id="orgafa2765" class="figure">
 <p><img src=".imagens/histograma1.png" alt="histograma1.png" />
 </p>
 </div>
@@ -141,8 +163,8 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </ul>
 </div>
 </section>
-<section id="slide-org9f632ed">
-<h3 id="org9f632ed">Alterando os <i>Breaks</i></h3>
+<section id="slide-org4264100">
+<h3 id="org4264100">Alterando os <i>Breaks</i></h3>
 <div class="org-src-container">
 
 <pre  class="src src-R"><code trim>hist(ToothGrowth$len,
@@ -150,14 +172,14 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </code></pre>
 </div>
 
-<div id="org494397f" class="figure">
+<div id="org42469b9" class="figure">
 <p><img src=".imagens/histograma2.png" alt="histograma2.png" />
 </p>
 </div>
 
 </section>
-<section id="slide-orga56fed4">
-<h3 id="orga56fed4">Alterando <i>Labels</i></h3>
+<section id="slide-org2a839ab">
+<h3 id="org2a839ab">Alterando <i>Labels</i></h3>
 <div class="org-src-container">
 
 <pre  class="src src-R"><code trim>hist(ToothGrowth$len,
@@ -167,7 +189,7 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </code></pre>
 </div>
 
-<div id="org5deaa69" class="figure">
+<div id="org1cc5595" class="figure">
 <p><img src=".imagens/histograma3.png" alt="histograma3.png" width="425px" />
 </p>
 </div>
@@ -175,13 +197,13 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </section>
 </section>
 <section>
-<section id="slide-orga447d8d">
-<h2 id="orga447d8d">Medidas Estatisticas</h2>
-<div class="outline-text-2" id="text-orga447d8d">
+<section id="slide-orgab3cd94">
+<h2 id="orgab3cd94">Medidas Estatisticas</h2>
+<div class="outline-text-2" id="text-orgab3cd94">
 </div>
 </section>
-<section id="slide-orged5858c">
-<h3 id="orged5858c">Minimo, Maximo, Média</h3>
+<section id="slide-org8af04b4">
+<h3 id="org8af04b4">Minimo, Maximo, Média</h3>
 <div class="column" style="float:left; width: 50%">
 <ul>
 <li>Mínimo</li>
@@ -228,8 +250,21 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 </pre>
 
 </section>
-<section id="slide-orgc077290">
-<h3 id="orgc077290">Quartis</h3>
+<section id="slide-orgf9a3733">
+<h3 id="orgf9a3733">Desvio Padrão</h3>
+<div class="org-src-container">
+
+<pre  class="src src-R"><code trim>sd(ToothGrowth$len)
+</code></pre>
+</div>
+
+<pre class="example">
+[1] 7.649315
+</pre>
+
+</section>
+<section id="slide-org6c3f097">
+<h3 id="org6c3f097">Quartis</h3>
 <div class="column" style="float:left; width: 50%">
 <div>
 \begin{equation}
@@ -268,15 +303,15 @@ Grafico usado para anlise de frequencia em um conjunto de dados, possui suporte 
 
 <div class="column" style="float:right; width: 50%">
 
-<div id="org74448f9" class="figure">
+<div id="orga295c0e" class="figure">
 <p><img src=".imagens/boxplot-explicado.png" alt="boxplot-explicado.png" />
 </p>
 </div>
 </div>
 
 </section>
-<section id="slide-orgaaec81e">
-<h3 id="orgaaec81e">Função <code>summary()</code></h3>
+<section id="slide-orge62b31e">
+<h3 id="orge62b31e">Função <code>summary()</code></h3>
 <p>
 Todos os dados apresentados antes podem ser calculados com uma unica função.
 </p>
@@ -310,8 +345,8 @@ Max.   :33.90           Max.   :2.000
 </pre>
 
 </section>
-<section id="slide-orgb413d68">
-<h3 id="orgb413d68">Boxplot</h3>
+<section id="slide-org53e2067">
+<h3 id="org53e2067">Boxplot</h3>
 <div class="column" style="float:left; width: 50%">
 <p>
 Uma das formas para visualizar os quartis é o grafico boxplot, como mostrado anteriormente ele exibe a divisão dos quartis sobre os dados.
@@ -325,15 +360,15 @@ Uma das formas para visualizar os quartis é o grafico boxplot, como mostrado an
 </code></pre>
 </div>
 
-<div id="orga6148b2" class="figure">
+<div id="org4b6575b" class="figure">
 <p><img src=".imagens/boxplot1.png" alt="boxplot1.png" />
 </p>
 </div>
 </div>
 
 </section>
-<section id="slide-org4ad08b9">
-<h4 id="org4ad08b9">Boxplots Lado a Lado</h4>
+<section id="slide-org13433c7">
+<h4 id="org13433c7">Boxplots Lado a Lado</h4>
 <div class="org-src-container">
 
 <pre  class="src src-R" id="func1"><code trim>boxplot(ToothGrowth$len[ToothGrowth$supp==<span style="color: #A3BE8C;">"OJ"</span>],
@@ -343,10 +378,41 @@ Uma das formas para visualizar os quartis é o grafico boxplot, como mostrado an
 </code></pre>
 </div>
 
-<div id="org5cf0066" class="figure">
+<div id="orgf9450c1" class="figure">
 <p><img src=".imagens/boxplot2.png" alt="boxplot2.png" />
 </p>
 </div>
+
+</section>
+</section>
+<section>
+<section id="slide-org2206fa5">
+<h2 id="org2206fa5">Leitura de Arquivos</h2>
+<ul>
+<li><p>
+Arquivos JSON:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-R"><code trim><span style="color: #81A1C1;">library</span>(jsonlite)
+<span style="color: #81A1C1;">setwd</span>(<span style="color: #A3BE8C;">"/seu/diretorio/atual"</span>)
+dados <span style="color: #81A1C1;">&lt;-</span> as.data.frame(fromJSON(txt=<span style="color: #A3BE8C;">'arquivo.json'</span>))
+</code></pre>
+</div></li>
+
+<li><p>
+Arquivos Tipo CSV:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-R"><code trim><span style="color: #81A1C1;">setwd</span>(<span style="color: #A3BE8C;">"/seu/diretorio/atual"</span>)
+dados <span style="color: #81A1C1;">&lt;-</span> read.table(<span style="color: #A3BE8C;">"activity.data"</span>,
+                    header = <span style="color: #8FBCBB;">TRUE</span>,
+                    sep=<span style="color: #A3BE8C;">","</span>)
+</code></pre>
+</div></li>
+
+</ul>
 </section>
 </section>
 </div>
